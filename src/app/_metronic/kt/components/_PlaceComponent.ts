@@ -47,7 +47,7 @@ class PlaceComponent {
     const attr = this.element.getAttribute(`${this.queries.attrQuery}${name}`)
     if (attr) {
       let value = getAttributeValueByBreakpoint(attr)
-      if (attr != null && String(value) === 'true') {
+      if (String(value) === 'true') {
         return true
       } else if (value !== null && String(value) === 'false') {
         return false
