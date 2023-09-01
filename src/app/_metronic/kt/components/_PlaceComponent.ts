@@ -5,7 +5,7 @@ import {
   getObjectPropertyValueByKey,
   EventHandlerUtil,
   throttle,
-} from '../_utils/index'
+} from '../_utils'
 
 export interface IPlaceOptions {
   mode: string

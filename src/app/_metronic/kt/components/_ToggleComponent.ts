@@ -1,4 +1,4 @@
-import {DataUtil, getUniqueIdWithPrefix, EventHandlerUtil} from '../_utils/index'
+import {DataUtil, getUniqueIdWithPrefix, EventHandlerUtil} from '../_utils'
 // Helpers
 import {CookieComponent} from './_CookieComponent'
 

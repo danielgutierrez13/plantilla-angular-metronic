@@ -6,7 +6,7 @@ import {
   DataUtil,
   DOMEventHandlerUtil,
   ElementStyleUtil,
-} from '../_utils/index'
+} from '../_utils'
 
 export interface IStepperOptions {
   startIndex: number
@@ -177,7 +177,7 @@ class StepperComponent {
         element.classList.add('current')
 
         if (
-          this.options.animation !== false &&
+          this.options.animation &&
           element.getAttribute('data-kt-stepper-element') === 'content'
         ) {
           ElementStyleUtil.set(element, 'animationDuration', this.options.animationSpeed)
@@ -207,7 +207,7 @@ class StepperComponent {
   }
 
   private isBetweenStep = () => {
-    return this.isLastStep() === false && this.isFirstStep() === false
+    return !this.isLastStep() && !this.isFirstStep()
   }
 
   //   ///////////////////////
@@ -327,4 +327,4 @@ class StepperComponent {
   }
 }
 
-export {StepperComponent, defaultStepperOptions}
+export { StepperComponent, defaultStepperOptions }

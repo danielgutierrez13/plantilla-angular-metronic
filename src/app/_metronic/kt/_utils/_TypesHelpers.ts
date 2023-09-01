@@ -21,7 +21,7 @@ function getUniqueIdWithPrefix(prefix: string | undefined): string {
 
 /* eslint-disable no-useless-escape */
 function stringSnakeToCamel(str: string): string {
-  return str.replace(/(\-\w)/g, function (m) {
+  return str.replace(/(-\w)/g, function (m) {
     return m[1].toUpperCase()
   })
 }
@@ -41,9 +41,9 @@ function toJSON(value: string | JSON): JSON | undefined {
     .split('')
     .map((el) => (el !== "'" ? el : '"'))
     .join('')
-  var jsonStr = result.replace(/(\w+:)|(\w+ :)/g, function (matched) {
+  const jsonStr = result.replace(/(\w+:)|(\w+ :)/g, function (matched) {
     return '"' + matched.substring(0, matched.length - 1) + '":'
-  })
+  });
   try {
     return JSON.parse(jsonStr)
   } catch {

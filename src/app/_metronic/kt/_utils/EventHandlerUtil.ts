@@ -1,5 +1,5 @@
-import {DataUtil} from './_DataUtil'
-import {getUniqueIdWithPrefix} from './_TypesHelpers'
+import { DataUtil } from './_DataUtil'
+import { getUniqueIdWithPrefix } from './_TypesHelpers'
 
 export interface EventMeta {
   name: string
@@ -95,8 +95,8 @@ export class EventHandlerUtil {
       const handler = EventHandlerUtil.getEventsMetaByHandlerId(name, handlerId)
       if (handler) {
         if (handler.name === name) {
-          if (handler.one === true) {
-            if (handler.fired === false) {
+          if (handler.one) {
+            if (!handler.fired) {
               EventHandlerUtil.setFiredByNameAndHandlerId(name, handlerId, true)
               return handler.callback.call(this, e)
             }

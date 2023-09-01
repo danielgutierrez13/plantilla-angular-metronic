@@ -11,9 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthService } from './modules/auth';
 import { environment } from 'src/environments/environment';
-// #fake-start#
 import { FakeAPIService } from './_fake';
-// #fake-end#
 
 function appInitializer(authService: AuthService) {
   return () => {
@@ -32,14 +30,12 @@ function appInitializer(authService: AuthService) {
     TranslateModule.forRoot(),
     HttpClientModule,
     ClipboardModule,
-    // #fake-start#
     environment.isMockEnabled
       ? HttpClientInMemoryWebApiModule.forRoot(FakeAPIService, {
         passThruUnknownUrl: true,
         dataEncapsulation: false,
       })
       : [],
-    // #fake-end#
     AppRoutingModule,
     InlineSVGModule.forRoot(),
     NgbModule,

@@ -1,4 +1,4 @@
-import {EventHandlerUtil, DataUtil, getUniqueIdWithPrefix, getCSS} from '../_utils/index'
+import { EventHandlerUtil, DataUtil, getUniqueIdWithPrefix, getCSS } from '../_utils'
 
 export interface IImageInputOptions {}
 
@@ -228,4 +228,4 @@ class ImageInputComponent {
     ImageInputComponent.createInstances(selector)
   }
 }
-export {ImageInputComponent, defaultImageInputOptions, defaultImageInputQueires}
+export { ImageInputComponent, defaultImageInputOptions, defaultImageInputQueires }

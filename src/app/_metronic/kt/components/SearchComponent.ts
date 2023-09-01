@@ -8,7 +8,7 @@ import {
   getViewPort,
   isVisibleElement,
   throttle,
-} from '../_utils/index'
+} from '../_utils'
 
 import {MenuComponent, defaultMenuOptions} from './MenuComponent'
 
@@ -274,12 +274,12 @@ class SearchComponent {
     if (this.layout === 'menu') {
       let responsiveFormMode = this.getResponsiveFormMode()
 
-      if (responsiveFormMode === 'on' && this.contentElement.contains(this.formElement) === false) {
+      if (responsiveFormMode === 'on' && !this.contentElement.contains(this.formElement)) {
         this.contentElement.prepend(this.formElement)
         this.formElement.classList.remove('d-none')
       } else if (
         responsiveFormMode === 'off' &&
-        this.contentElement.contains(this.formElement) === true
+        this.contentElement.contains(this.formElement)
       ) {
         this.element.prepend(this.formElement)
         this.formElement.classList.add('d-none')
@@ -307,7 +307,7 @@ class SearchComponent {
 
   // Search
   public search = () => {
-    if (this.processing === false) {
+    if (!this.processing) {
       // Show search spinner
       if (this.spinnerElement) {
         this.spinnerElement.classList.remove('d-none')
@@ -476,4 +476,4 @@ class SearchComponent {
     SearchComponent.createInstances(selector)
   }
 }
-export {SearchComponent, defaultSearchOptions, defaultSearchQueires}
+export { SearchComponent, defaultSearchOptions, defaultSearchQueires }

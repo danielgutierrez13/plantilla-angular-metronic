@@ -8,7 +8,7 @@ import {
   throttle,
   getCSS,
   ElementStyleUtil,
-} from '../_utils/index';
+} from '../_utils';
 import { CookieComponent } from './_CookieComponent';
 
 export interface ScrollOptions {
@@ -34,7 +34,7 @@ class ScrollComponent {
   }
 
   private getOption = (name: string) => {
-    if (this.element.hasAttribute('data-kt-scroll-' + name) === true) {
+    if (this.element.hasAttribute('data-kt-scroll-' + name)) {
       const attr = this.element.getAttribute('data-kt-scroll-' + name) || '';
       let value: string | JSON | boolean = getAttributeValueByBreakpoint(attr);
       if (value !== null && String(value) === 'true') {
@@ -80,7 +80,7 @@ class ScrollComponent {
       if (elements && elements.length > 0) {
         for (let i = 0, len = elements.length; i < len; i++) {
           const element = elements[i] as HTMLElement;
-          if (isVisibleElement(element) === false) {
+          if (!isVisibleElement(element)) {
             continue;
           }
 

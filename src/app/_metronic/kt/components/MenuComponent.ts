@@ -1,5 +1,18 @@
-import {createPopper, VirtualElement} from '@popperjs/core'
-import {DataUtil, DOMEventHandlerUtil, ElementStyleUtil, EventHandlerUtil, getAttributeValueByBreakpoint, getElementChild, getElementParents, getHighestZindex, getUniqueIdWithPrefix, insertAfterElement, slideDown, slideUp, throttle,} from '../_utils/index'
+import { createPopper, VirtualElement } from '@popperjs/core'
+import { DataUtil,
+  DOMEventHandlerUtil,
+  ElementStyleUtil,
+  EventHandlerUtil,
+  getAttributeValueByBreakpoint,
+  getElementChild,
+  getElementParents,
+  getHighestZindex,
+  getUniqueIdWithPrefix,
+  insertAfterElement,
+  slideDown,
+  slideUp,
+  throttle
+} from '../_utils'
 
 export interface MenuOptions {
   dropdown: {
@@ -462,7 +475,7 @@ class MenuComponent {
       DataUtil.remove(sub, 'menu')
     }
 
-    if (DataUtil.has(item, 'popper') === true) {
+    if (DataUtil.has(item, 'popper')) {
       DataUtil.get(item, 'popper').destroy()
       DataUtil.remove(item, 'popper')
     }
@@ -474,7 +487,7 @@ class MenuComponent {
 
   // Destroy dropdown popper(new)
   private destroyDropdownPopper = (item: HTMLElement) => {
-    if (DataUtil.has(item, 'popper') === true) {
+    if (DataUtil.has(item, 'popper')) {
       DataUtil.get(item, 'popper').destroy()
       DataUtil.remove(item, 'popper')
     }
@@ -487,11 +500,11 @@ class MenuComponent {
       return
     }
 
-    if (this.options.accordion.expand === false) {
+    if (!this.options.accordion.expand) {
       this._hideAccordions(item)
     }
 
-    if (DataUtil.has(item, 'popper') === true) {
+    if (DataUtil.has(item, 'popper')) {
       this._hideDropdown(item)
     }
 
@@ -538,9 +551,7 @@ class MenuComponent {
 
         if (
           this._getItemSubType(itemToHide) === 'accordion' &&
-          itemToHide !== item &&
-          item.contains(itemToHide) === false &&
-          itemToHide.contains(item) === false
+            itemToHide !== item && !item.contains(itemToHide) && !itemToHide.contains(item)
         ) {
           this._hideAccordion(itemToHide)
         }
@@ -863,8 +874,7 @@ class MenuComponent {
         if (menu && menu.getItemSubType(item) === 'dropdown') {
           if (skip) {
             if (
-              menu.getItemSubElement(item).contains(skip) === false &&
-              item.contains(skip) === false &&
+              menu.getItemSubElement(item).contains(skip) === false && !item.contains(skip) &&
               item !== skip
             ) {
               menu.hide(item)
@@ -1048,4 +1058,4 @@ class MenuComponent {
   }
 }
 
-export {MenuComponent, defaultMenuOptions}
+export { MenuComponent, defaultMenuOptions }

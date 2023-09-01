@@ -33,7 +33,7 @@ function getCSSVariableValue(variableName: string) {
 function getElementActualCss(el: HTMLElement, prop: any, cache: boolean) {
   let css = '';
 
-  if (!el.getAttribute('kt-hidden-' + prop) || cache === false) {
+  if (!el.getAttribute('kt-hidden-' + prop) || !cache) {
     let value;
 
     // the element is hidden so:
@@ -261,9 +261,9 @@ function getElementChild(
 }
 
 function isMobileDevice(): boolean {
-  let test = getViewPort().width < +getBreakpoint('lg') ? true : false;
+  let test = getViewPort().width < +getBreakpoint('lg');
 
-  if (test === false) {
+  if (!test) {
     // For use within normal web clients
     test = navigator.userAgent.match(/iPad/i) != null;
   }
@@ -273,9 +273,7 @@ function isMobileDevice(): boolean {
 
 function slide(el: HTMLElement, dir: string, speed: number, callback: any) {
   if (
-    !el ||
-    (dir === 'up' && isVisibleElement(el) === false) ||
-    (dir === 'down' && isVisibleElement(el) === true)
+    !el || (dir === 'up' && !isVisibleElement(el)) || (dir === 'down' && isVisibleElement(el))
   ) {
     return;
   }
@@ -298,7 +296,7 @@ function slide(el: HTMLElement, dir: string, speed: number, callback: any) {
 
   if (
     ElementStyleUtil.get(el, 'padding-bottom') &&
-    DataUtil.has(el, 'slide-padding-bottom') !== true
+    !DataUtil.has(el, 'slide-padding-bottom')
   ) {
     DataUtil.set(
       el,
@@ -458,11 +456,9 @@ function colorLighten(color: string, amount: number) {
   const addLight = (_color: string, _amount: number) => {
     const cc = parseInt(_color, 16) + _amount;
     const cNum = cc > 255 ? 255 : cc;
-    const c =
-      cNum.toString(16).length > 1
-        ? cNum.toString(16)
-        : `0${cNum.toString(16)}`;
-    return c;
+    return cNum.toString(16).length > 1
+      ? cNum.toString(16)
+      : `0${cNum.toString(16)}`;
   };
 
   color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color;
@@ -477,11 +473,9 @@ function colorDarken(color: string, amount: number) {
   const subtractLight = (_color: string, _amount: number) => {
     const cc = parseInt(color, 16) - amount;
     const cNum = cc < 0 ? 0 : cc;
-    const c =
-      cNum.toString(16).length > 1
-        ? cNum.toString(16)
-        : `0${cNum.toString(16)}`;
-    return c;
+    return cNum.toString(16).length > 1
+      ? cNum.toString(16)
+      : `0${cNum.toString(16)}`;
   };
 
   color = color.indexOf('#') >= 0 ? color.substring(1, color.length) : color;
