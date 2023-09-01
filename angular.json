@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "demo1": {
+    "plantilla-angular-proyecto": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,16 +20,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/demo1",
-            "allowedCommonJsDependencies": [
-              "object-path",
-              "apexcharts",
-              "clipboard.js",
-              "prismjs"
-            ],
+            "outputPath": "dist/plantilla-angular-proyecto",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
@@ -78,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "demo1:build:production"
+              "browserTarget": "plantilla-angular-proyecto:build:production"
             },
             "development": {
-              "browserTarget": "demo1:build:development"
+              "browserTarget": "plantilla-angular-proyecto:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -89,14 +85,16 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "demo1:build"
+            "browserTarget": "plantilla-angular-proyecto:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "inlineStyleLanguage": "scss",
