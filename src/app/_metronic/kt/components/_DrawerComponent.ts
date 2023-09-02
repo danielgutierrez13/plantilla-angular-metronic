@@ -82,11 +82,7 @@ class DrawerComponent {
     const hasBaseClass = this.element.classList.contains(`${this.options.baseClass}-on`)
     const bodyCanvasAttr = String(document.body.getAttribute(`data-kt-drawer-${this.name}-`))
 
-    if (hasBaseClass && bodyCanvasAttr === 'on') {
-      this.shown = true
-    } else {
-      this.shown = false
-    }
+    this.shown = hasBaseClass && bodyCanvasAttr === 'on';
 
     // Activate/deactivate
     if (this._getOption('activate') === true) {
