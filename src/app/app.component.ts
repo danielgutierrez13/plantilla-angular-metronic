@@ -10,7 +10,7 @@ import { locale as frLang } from './modules/i18n/vocabs/fr';
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: 'body[root]',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
