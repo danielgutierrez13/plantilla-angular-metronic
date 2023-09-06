@@ -12,22 +12,25 @@ import { LoadingComponent } from './presentation/loading/loading.component';
 import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoadingComponent,
-  ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    TranslateModule.forRoot(),
-    HttpClientModule,
-    ClipboardModule,
-    AppRoutingModule,
-    InlineSVGModule.forRoot(),
-    NgbModule,
-    ReactiveFormsModule,
-  ],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        LoadingComponent,
+    ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        TranslateModule.forRoot(),
+        HttpClientModule,
+        ClipboardModule,
+        AppRoutingModule,
+        InlineSVGModule.forRoot(),
+        NgbModule,
+        ReactiveFormsModule,
+    ],
+    providers: [],
+    bootstrap: [AppComponent],
+    exports: [
+        LoadingComponent
+    ]
 })
 export class AppModule {}

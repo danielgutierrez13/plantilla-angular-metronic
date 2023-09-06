@@ -29,8 +29,8 @@ export class LoginRepositoryService {
     return this.apiService.post(ctrl, environment.apiSecurity, data).pipe(
       map((repsonse: LoginModelResponse) => {
         localStorage.setItem("currentUser", JSON.stringify(repsonse));
-        localStorage.setItem("STATE", "true");
-        localStorage.setItem("ROLE", JSON.stringify([repsonse.role]));
+        localStorage.setItem("STATE", JSON.stringify(repsonse.status));
+        localStorage.setItem("ROLE", JSON.stringify(repsonse.role));
         this.currentUserSubject.next(repsonse);
         return repsonse;
       })

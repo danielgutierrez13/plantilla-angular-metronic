@@ -81,7 +81,7 @@ export class ApiService {
   }
 
   private buildUrl(apiName: string, url: string): string {
-    let callUrl: string | undefined = apiName ? `${url}${apiName}` : url;
+    let callUrl: string = `${url}${apiName}`;
     return callUrl ?? '';
   }
 

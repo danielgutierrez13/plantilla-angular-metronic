@@ -11,25 +11,25 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'login_check',
         pathMatch: 'full',
       },
       {
-        path: 'login',
+        path: 'login_check',
         component: LoginComponent,
         data: {
           returnUrl: window.location.pathname
         },
       },
       {
-        path: 'forgot-password',
+        path: 'forgot_password',
         component: ForgotPasswordComponent,
         data: {
           returnUrl: window.location.pathname
         },
       },
-      { path: '', redirectTo: 'login', pathMatch: 'full' },
-      { path: '**', redirectTo: 'login', pathMatch: 'full' },
+      { path: '', redirectTo: 'login_check', pathMatch: 'full' },
+      { path: '**', redirectTo: 'login_check', pathMatch: 'full' },
     ],
   },
 ];

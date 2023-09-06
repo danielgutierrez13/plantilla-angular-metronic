@@ -2,6 +2,7 @@
 export const environment = {
   production: false,
   apiSecurity: "https://security.drap.pidia.net/api/",
+
   appVersion: 'v8.0.38',
   USERDATA_KEY: 'authf649fc9a5f55',
   isMockEnabled: true,
