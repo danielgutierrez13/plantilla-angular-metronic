@@ -14,11 +14,12 @@
           <span class="h-20px border-gray-200 border-start mx-4"></span>
         </ng-container>
         <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-          <li
-            *ngFor="let bc of _bc"
-            class="breadcrumb-item"
-            [ngClass]="!bc.isSeparator && bc.isActive ? 'text-dark' : ''"
-            [ngClass]="!bc.isSeparator && !bc.isActive ? 'text-muted' : ''"
+          <li *ngFor="let bc of _bc"
+              class="breadcrumb-item"
+              [ngClass]="{
+                  'text-dark': !bc.isSeparator && bc.isActive,
+                  'text-muted': !bc.isSeparator && !bc.isActive
+              }"
           >
             <ng-container *ngIf="!bc.isSeparator">
               <a class="text-muted text-hover-primary" [routerLink]="bc.path">

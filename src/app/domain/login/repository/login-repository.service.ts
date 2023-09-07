@@ -29,8 +29,9 @@ export class LoginRepositoryService {
     return this.apiService.post(ctrl, environment.apiSecurity, data).pipe(
       map((repsonse: LoginModelResponse) => {
         localStorage.setItem("currentUser", JSON.stringify(repsonse));
-        localStorage.setItem("STATE", JSON.stringify(repsonse.status));
-        localStorage.setItem("ROLE", JSON.stringify(repsonse.role));
+        localStorage.setItem("state", JSON.stringify(repsonse.status));
+        localStorage.setItem("token", JSON.stringify(repsonse.token));
+        localStorage.setItem("role", JSON.stringify(repsonse.role));
         this.currentUserSubject.next(repsonse);
         return repsonse;
       })
@@ -43,8 +44,9 @@ export class LoginRepositoryService {
 
   public logout() {
     localStorage.removeItem("currentUser");
-    localStorage.removeItem("STATE");
-    localStorage.removeItem("ROLE");
+    localStorage.removeItem("state");
+    localStorage.removeItem("role");
+    localStorage.removeItem("token");
     this.isLogin = false;
     this.roleAs = "";
     this.currentUserSubject.next(null);
