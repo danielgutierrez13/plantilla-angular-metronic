@@ -15,29 +15,12 @@ import { LayoutInitService } from './core/layout-init.service';
 })
 export class LayoutComponent implements OnInit, AfterViewInit {
   // Public variables
-  selfLayout = 'default';
-  asideSelfDisplay: true;
-  asideMenuStatic: true;
-  contentClasses = '';
   contentContainerClasses = '';
   toolbarDisplay = true;
-  contentExtended: false;
   asideCSSClasses: string;
-  asideHTMLAttributes: any = {};
-  headerMobileClasses = '';
-  headerMobileAttributes = {};
-  footerDisplay: boolean;
-  footerCSSClasses: string;
   headerCSSClasses: string;
   headerHTMLAttributes: any = {};
-  // offcanvases
-  extrasSearchOffcanvasDisplay = false;
-  extrasNotificationsOffcanvasDisplay = false;
-  extrasQuickActionsOffcanvasDisplay = false;
-  extrasCartOffcanvasDisplay = false;
-  extrasUserOffcanvasDisplay = false;
-  extrasQuickPanelDisplay = false;
-  extrasScrollTopDisplay = false;
+  // offcanvase
   asideDisplay: boolean;
   @ViewChild('ktAside', { static: true }) ktAside: ElementRef;
   @ViewChild('ktHeaderMobile', { static: true }) ktHeaderMobile: ElementRef;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LayoutService } from '../../../../../layout';
+import { LayoutService } from '../../../../../../../presentation/layout';
 
 @Component({
   selector: 'app-tiles-widget1',

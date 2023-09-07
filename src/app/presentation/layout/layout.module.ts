@@ -8,9 +8,9 @@ import {
   NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
-import { TranslationModule } from '../../modules/i18n';
+import { TranslationModule } from '../../theme/modules/i18n';
 import { LayoutComponent } from './layout.component';
-import { Routing } from '../../pages/routing';
+import { Routing } from '../pages/routing';
 import { AsideComponent } from './components/aside/aside.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ContentComponent } from './components/content/content.component';
@@ -21,8 +21,8 @@ import { AsideMenuComponent } from './components/aside/aside-menu/aside-menu.com
 import { TopbarComponent } from './components/topbar/topbar.component';
 import { PageTitleComponent } from './components/header/page-title/page-title.component';
 import { HeaderMenuComponent } from './components/header/header-menu/header-menu.component';
-import { DrawersModule, DropdownMenusModule, ModalsModule, EngagesModule, ExtrasModule} from '../partials';
-import {EngagesComponent} from "../partials/layout/engages/engages.component";
+import { DrawersModule, DropdownMenusModule, ModalsModule, EngagesModule, ExtrasModule } from '../../theme/_metronic/partials';
+import { EngagesComponent } from "../../theme/_metronic/partials/layout/engages/engages.component";
 
 const routes: Routes = [
   {

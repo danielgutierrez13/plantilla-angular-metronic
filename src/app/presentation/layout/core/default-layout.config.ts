@@ -95,7 +95,7 @@ export interface IPageTitle extends ILayoutComponent {
   layout: 'default' | 'select';
   direction: 'row' | 'column';
   responsive: boolean;
-  responsiveBreakpoint: 'lg' | 'md' | 'lg' | '300px';
+  responsiveBreakpoint: 'lg' | 'md' | '300px';
   responsiveTarget: string;
 }
 

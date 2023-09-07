@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { LayoutService } from '../../../../../layout';
+import { LayoutService } from '../../../../../../../presentation/layout';
 
 export type NotificationsTabsType =
   | 'kt_topbar_notifications_1'

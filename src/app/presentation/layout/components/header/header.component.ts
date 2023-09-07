@@ -1,8 +1,5 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild,} from '@angular/core';
-import {NavigationCancel, NavigationEnd, Router} from '@angular/router';
-import {Subscription} from 'rxjs';
-import {LayoutService} from '../../core/layout.service';
-import {MenuComponent} from '../../../kt/components';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { LayoutService } from '../../core/layout.service';
 
 @Component({
   selector: 'app-header',
@@ -19,10 +16,9 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
   };
   @ViewChild('ktPageTitle', {static: true}) ktPageTitle: ElementRef;
 
-  private unsubscribe: Subscription[] = [];
-
-  constructor(private layout: LayoutService, private router: Router) {
-    this.routingChanges();
+  constructor(
+      private layout: LayoutService,
+  ) {
   }
 
   ngOnInit(): void {
@@ -42,15 +38,6 @@ export class HeaderComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       }
     }
-  }
-
-  routingChanges() {
-    const routerSubscription = this.router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd || event instanceof NavigationCancel) {
-        MenuComponent.reinitialization();
-      }
-    });
-    this.unsubscribe.push(routerSubscription);
   }
 
   ngOnDestroy() {

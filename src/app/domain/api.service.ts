@@ -86,9 +86,15 @@ export class ApiService {
   }
 
   private getHeaders(): HttpHeadersConfig {
-    return {
+    const token = localStorage.getItem('token');
+    let headers: HttpHeadersConfig = {
       "Content-Type": "application/json",
     };
+    if (token) {
+      headers["Authorization"] = `Bearer ${token}`;
+    }
+    return headers;
   }
+
 
 }

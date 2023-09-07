@@ -41,7 +41,7 @@ export class LoginRepositoryService {
     return this.currentUserSubject.value;
   }
 
-  logout() {
+  public logout() {
     localStorage.removeItem("currentUser");
     localStorage.removeItem("STATE");
     localStorage.removeItem("ROLE");
@@ -50,14 +50,9 @@ export class LoginRepositoryService {
     this.currentUserSubject.next(null);
   }
 
-  isLoggedIn() {
+  public isLoggedIn(): boolean {
     const loggedIn = localStorage.getItem("STATE");
     this.isLogin = loggedIn == "true";
     return this.isLogin;
   }
-
-  // getRole() {
-  //   this.roleAs = JSON.parse(localStorage.getItem("ROLE")?.toString() ?? '{}');
-  //   return this.roleAs;
-  // }
 }

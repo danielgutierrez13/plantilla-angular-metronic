@@ -10,6 +10,7 @@ export const routes: Routes = [
   },
   {
     path: 'error',
+
     loadChildren: () =>
       import('./presentation/errors/errors.module').then((m) => m.ErrorsModule),
   },
@@ -17,7 +18,11 @@ export const routes: Routes = [
     path: '',
     canActivate: [authGuard],
     loadChildren: () =>
-      import('./theme/_metronic/layout/layout.module').then((m) => m.LayoutModule),
+      import('./presentation/layout/layout.module').then((m) => m.LayoutModule),
+  },
+  {
+    path: '**',
+    redirectTo: 'error/404',
   },
 ];
 

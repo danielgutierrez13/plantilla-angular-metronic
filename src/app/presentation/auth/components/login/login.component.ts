@@ -24,7 +24,7 @@ export class LoginComponent  implements OnInit {
     private router: Router
   ) {
     if (this.loginRepository.currentUserValue?.status) {
-      this.dashboard();
+      this.toDashboard();
     }
   }
 
@@ -42,7 +42,7 @@ export class LoginComponent  implements OnInit {
         null,
         Validators.compose([
           Validators.required,
-          Validators.minLength(6),
+          Validators.minLength(5),
           Validators.maxLength(320),
         ]),
       ],
@@ -75,7 +75,7 @@ export class LoginComponent  implements OnInit {
           )
           .subscribe({
               next: () => {
-                this.dashboard();
+                this.toDashboard();
               },
               error: () => {
                 this.hasError = true;
@@ -84,7 +84,7 @@ export class LoginComponent  implements OnInit {
     }
   }
 
-  public dashboard(): void {
+  public toDashboard(): void {
     void this.router.navigate(['/']);
   }
 
