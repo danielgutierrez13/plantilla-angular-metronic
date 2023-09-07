@@ -51,10 +51,4 @@ export class LoginRepositoryService {
     this.roleAs = "";
     this.currentUserSubject.next(null);
   }
-
-  public isLoggedIn(): boolean {
-    const loggedIn = localStorage.getItem("STATE");
-    this.isLogin = loggedIn == "true";
-    return this.isLogin;
-  }
 }
