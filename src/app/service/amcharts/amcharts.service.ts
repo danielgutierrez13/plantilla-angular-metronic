@@ -4,7 +4,7 @@ import * as am5xy from "@amcharts/amcharts5/xy";
 import * as am5percent from "@amcharts/amcharts5/percent";
 import * as am5plugins_exporting from "@amcharts/amcharts5/plugins/exporting";
 import { Injectable } from '@angular/core';
-import {AmchartsConfig, DataMultipleCircle} from "../../model/model-amcharts";
+import {AmchartsConfig, DataMultipleCircle} from "../../interfaces/interfaces-amcharts";
 
 @Injectable({
   providedIn: 'root'
