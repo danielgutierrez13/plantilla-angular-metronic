@@ -1,0 +1,36 @@
+<ng-container *ngIf="user$">
+  <div class="menu-item px-3">
+    <div class="menu-content d-flex align-items-center px-3">
+      <div class="symbol symbol-50px me-5">
+        <img alt="Logo" src="../src/assets/media/avatars/300-1.jpg" />
+      </div>
+      <div class="d-flex flex-column">
+        <div class="fw-bolder d-flex align-items-center fs-5">
+          {{ user$.username }}
+          <span class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">
+            Pro
+          </span>
+        </div>
+        <a class="fw-bold text-muted text-hover-primary fs-7 cursor-pointer">
+          {{ user$.role }}
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="separator my-2"></div>
+
+  <div class="menu-item px-5 my-1">
+    <a routerLink="/crafted/account/settings" class="menu-link px-5">
+      Configuración de la cuenta
+    </a>
+  </div>
+
+  <div class="separator my-2"></div>
+
+  <div class="menu-item px-5">
+    <a (click)="logout()" class="menu-link px-5 cursor-pointer">
+      Cerrar sesión
+    </a>
+  </div>
+</ng-container>
