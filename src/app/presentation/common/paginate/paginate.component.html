@@ -1,0 +1,40 @@
+<div class="d-flex flex-stack flex-wrap pt-10">
+  <div class="fs-6 fw-bold text-gray-700">
+    <span class="d-none d-md-inline">Mostrando </span>
+    {{ (_currentPage - 1) * _selectedItemsPerPage + 1 }} a
+    {{ Math.min(_currentPage * _selectedItemsPerPage, _totalEntries) }}
+    <span class="d-none d-md-inline"> de </span> {{ _totalEntries }}
+    <span class="d-none d-md-inline"> datos</span>
+  </div>
+
+  <ul class="pagination">
+    <li class="page-item previous">
+      <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage - 1)">
+        <i class="previous"></i>
+      </a>
+    </li>
+
+    <li class="page-item" [class.active]="_currentPage === page" *ngFor="let page of getPagesToShow()">
+      <a class="page-link cursor-pointer"  (click)="setCurrentPage(page)">
+        {{ page }}
+      </a>
+    </li>
+
+    <li class="page-item next">
+      <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage + 1)">
+        <i class="next"></i>
+      </a>
+    </li>
+  </ul>
+
+  <div class="form-group ml-auto">
+    <div class="fs-6 fw-bold text-gray-700 d-none d-md-inline">
+      Ítems por página:
+    </div>
+    <select id="itemsPerPageSelect" [(ngModel)]="_selectedItemsPerPage" (change)="onItemsPerPageChange()" class="d-md-inline">
+      <option *ngFor="let option of _itemsPerPageOptions" [value]="option">{{ option }}</option>
+    </select>
+    </div>
+</div>
+
+
