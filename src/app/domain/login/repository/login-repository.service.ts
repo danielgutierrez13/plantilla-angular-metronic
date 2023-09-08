@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from "../../api.service";
 import { environment } from "../../../../environments/environment";
 import { BehaviorSubject, Observable } from "rxjs";
-import { LoginModelRequest, LoginModelResponse } from "../model/login-model";
+import { LoginModelRequest, LoginModelResponse } from "../interfaces/login-model";
 import { LoginConstRoutes } from "../const/login-const";
 import { map } from "rxjs/operators";
 

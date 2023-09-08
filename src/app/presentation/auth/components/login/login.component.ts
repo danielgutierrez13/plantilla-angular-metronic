@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoginRepositoryService } from "../../../../domain/login/repository/login-repository.service";
-import { LoginModelRequest } from "../../../../domain/login/model/login-model";
+import { LoginModelRequest } from "../../../../domain/login/interfaces/login-model";
 import { ChangeDetectorRef } from '@angular/core';
 import { finalize } from "rxjs/operators";
 import { Router } from "@angular/router";

@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { LoginModelResponse } from "../../../../../../../domain/login/model/login-model";
+import { LoginModelResponse } from "../../../../../../../domain/login/interfaces/login-model";
 import { LoginRepositoryService } from "../../../../../../../domain/login/repository/login-repository.service";
 
 @Component({
