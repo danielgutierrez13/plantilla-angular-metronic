@@ -1,12 +1,18 @@
 import { Routes } from '@angular/router';
 import { authGuard } from "../../service/auth/auth.guard";
 import { DashboardComponent } from "./dashboard/dashboard.component";
+import { UsuariosComponent } from "../security/usuarios/usuarios.component";
 
 const Routing: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
     component: DashboardComponent,
+  },
+  {
+    path: 'security/usuarios',
+    canActivate: [authGuard],
+    component: UsuariosComponent,
   },
   {
     path: 'builder',

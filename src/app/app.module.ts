@@ -13,6 +13,7 @@ import { DashboardComponent } from './presentation/pages/dashboard/dashboard.com
 import { WidgetsModule } from "./theme/_metronic/partials";
 import { PaginateComponent } from "./presentation/common/paginate/paginate.component";
 import { TableComponent } from "./presentation/common/table/table.component";
+import { UsuariosComponent } from './presentation/security/usuarios/usuarios.component';
 
 @NgModule({
     declarations: [
@@ -21,6 +22,7 @@ import { TableComponent } from "./presentation/common/table/table.component";
         DashboardComponent,
         PaginateComponent,
         TableComponent,
+        UsuariosComponent,
     ],
     imports: [
         BrowserModule,

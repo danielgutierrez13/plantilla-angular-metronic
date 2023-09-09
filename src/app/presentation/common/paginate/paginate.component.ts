@@ -7,21 +7,20 @@ import {Component, EventEmitter, Output} from '@angular/core';
 })
 export class PaginateComponent {
 
-  @Output() totalEntriesChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() currentPageChange: EventEmitter<number> = new EventEmitter<number>();
-  @Output() selectedItemsPerPageChange: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() totalEntriesChange: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() currentPageChange: EventEmitter<number> = new EventEmitter<number>();
+  // @Output() selectedItemsPerPageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  public _totalEntries: number = 91;
-  public _currentPage: number = 1;
-  public _selectedItemsPerPage: number = 10;
-  public _itemsPerPageOptions: number[] = [5, 10, 25, 50];
+  @Output() public _totalEntries: number = 91;
+  @Output() public _currentPage: number = 1;
+  @Output() public _selectedItemsPerPage: number = 10;
+  @Output() public _itemsPerPageOptions: number[] = [5, 10, 25, 50];
   protected readonly Math = Math;
 
   public getPagesToShow(): number[] {
     const totalPages: number = Math.ceil(this._totalEntries / this._selectedItemsPerPage);
     const maxPagesToShow: number = 5;
 
-    // Lógica para distribuir las páginas
     let startPage: number = 1;
     let endPage: number = totalPages;
 
@@ -38,11 +37,6 @@ export class PaginateComponent {
     }
 
     return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-  }
-
-  public set totalEntries(value: number) {
-    this._totalEntries = value;
-    this.totalEntriesChange.emit(value);
   }
 
   public setCurrentPage(page: number) {

@@ -55,5 +55,20 @@ const asideMenu: MenuAside[] = [
       }
     ]
   },
+  {
+    title: 'Seguridad',
+    url: '/security',
+    icon: './assets/media/icons/duotune/communication/com006.svg',
+    separator: false,
+    nameSeparator: 'Seguridad',
+    order: 3,
+    subMenu: [
+      {
+        title: 'Usuarios',
+        url: '/security/usuarios',
+        order: 1,
+      },
+    ]
+  },
 
 ]
