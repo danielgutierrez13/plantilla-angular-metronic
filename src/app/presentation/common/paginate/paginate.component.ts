@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import {PageEvent} from "@angular/material/paginator";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { PaginationData } from "../../../interfaces/interfaces-pagination-data";
 
 @Component({
   selector: 'app-paginate',
@@ -9,71 +8,40 @@ import {PageEvent} from "@angular/material/paginator";
 })
 export class PaginateComponent {
 
-  // @Output() totalEntriesChange: EventEmitter<number> = new EventEmitter<number>();
-  // @Output() currentPageChange: EventEmitter<number> = new EventEmitter<number>();
-  // @Output() selectedItemsPerPageChange: EventEmitter<number> = new EventEmitter<number>();
+  @Input() totalEntries: number = 100;
+  @Input() itemsPerPageOptions: number[] = [5, 10, 25, 50];
+  @Output() paginationChange: EventEmitter<PaginationData> = new EventEmitter<PaginationData>();
 
-  @Output() public _totalEntries: number = 100;
-  @Output() public _currentPage: number = 1;
-  @Output() public _selectedItemsPerPage: number = 10;
-  @Output() public _itemsPerPageOptions: number[] = [5, 10, 25, 50];
+
+  public _currentPage: number = 1;
+  public _selectedItemsPerPage: number = 10;
+
   protected readonly Math = Math;
-  public maxPagesToShow: number = 5;
 
-  constructor(private breakpointObserver: BreakpointObserver) {
-    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe(result => {
-      if (result.matches) {
-        this.maxPagesToShow = 3;
-      } else {
-        this.maxPagesToShow = 5;
-      }
-    });
-  }
-
-  public getPagesToShow(): number[] {
-    const totalPages: number = Math.ceil(this._totalEntries / this._selectedItemsPerPage);
-
-    let startPage: number = 1;
-    let endPage: number = totalPages;
-
-    if (totalPages > this.maxPagesToShow) {
-      const halfMax: number = Math.floor(this.maxPagesToShow / 2) + this.maxPagesToShow - 2;
-
-      if (this._currentPage <= halfMax ) {
-        endPage = this.maxPagesToShow;
-      } else if (this._currentPage >= totalPages - halfMax) {
-        startPage = totalPages - this.maxPagesToShow + 1;
-        endPage = totalPages;
-      } else {
-        startPage = this._currentPage - this.maxPagesToShow + 1;
-        endPage = this._currentPage;
-      }
-    }
-
-    return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
-  }
-
+  constructor() { }
 
   getTotalPages(): number {
-    return Math.ceil(this._totalEntries / this._selectedItemsPerPage);
+    return Math.ceil(this.totalEntries / this._selectedItemsPerPage);
   }
 
   setCurrentPage(page: number): void {
-    // Verifica que la página esté en un rango válido
     if (page >= 1 && page <= this.getTotalPages()) {
       this._currentPage = page;
-      // Actualiza tus datos basándote en los valores actuales de paginado
-      // ...
+      this.emitPaginationData();
     }
-  }
-
-  handlePageEvent(event: PageEvent) {
-    this._currentPage = event.pageIndex + 1;
-    this._selectedItemsPerPage = event.pageSize;
   }
 
   onItemsPerPageChange() {
     this._currentPage = 1;
+    this.emitPaginationData();
   }
+
+  private emitPaginationData() {
+    this.paginationChange.emit({
+        currentPage: this._currentPage,
+        itemsPerPage: this._selectedItemsPerPage
+    });
+  }
+
 
 }

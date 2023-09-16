@@ -15,7 +15,6 @@ import { PaginateComponent } from "./presentation/common/paginate/paginate.compo
 import { TableComponent } from "./presentation/common/table/table.component";
 import { UsuariosComponent } from './presentation/security/usuarios/usuarios.component';
 import { MatSortModule } from "@angular/material/sort";
-import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
     declarations: [
@@ -38,7 +37,6 @@ import {MatPaginatorModule} from "@angular/material/paginator";
         WidgetsModule,
         FormsModule,
         MatSortModule,
-        MatPaginatorModule
     ],
     providers: [],
     bootstrap: [AppComponent],

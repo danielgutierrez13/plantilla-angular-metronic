@@ -4,8 +4,8 @@
   <div class="flex-grow-1 fs-6 fw-bold text-gray-700">
     <span class="d-none d-md-inline">Mostrando </span>
     {{ (_currentPage - 1) * _selectedItemsPerPage + 1 }} a
-    {{ Math.min(_currentPage * _selectedItemsPerPage, _totalEntries) }}
-    <span class="d-none d-md-inline"> de </span> {{ _totalEntries }}
+    {{ Math.min(_currentPage * _selectedItemsPerPage, totalEntries) }}
+    <span class="d-none d-md-inline"> de </span> {{ totalEntries }}
     <span class="d-none d-md-inline"> datos</span>
   </div>
 
@@ -15,7 +15,7 @@
       Mostrar:
     </div>
     <select id="itemsPerPageSelect" [(ngModel)]="_selectedItemsPerPage" (change)="onItemsPerPageChange()" class="custom-select2">
-      <option *ngFor="let option of _itemsPerPageOptions" [value]="option">{{ option }}</option>
+      <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
     </select>
     <span class="custom-select2-arrow">
         <i class="fas fa-chevron-down"></i>

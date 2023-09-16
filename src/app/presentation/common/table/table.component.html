@@ -6,75 +6,73 @@
     >
       <!-- begin::Table head -->
       <thead>
+
       <tr class="fw-bolder text-muted">
-        <th class="min-w-150px" mat-sort-header="authors">Authors</th>
-        <th class="min-w-140px" mat-sort-header="company">Company</th>
-        <th class="min-w-100px" mat-sort-header="actions">Actions</th>
+        <ng-container *ngFor="let header of headers">
+          <th [class]="getMinWidthClass(header?.minWidth)" [mat-sort-header]="header.id">{{ header.label }}</th>
+        </ng-container>
       </tr>
+
       </thead>
       <!-- end::Table head -->
       <!-- begin::Table body -->
       <tbody>
-      <tr>
-        <td>
-          <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-start flex-column text-dark fw-bolder fs-6">
-                Ana Simmons
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex align-items-center">
-            <div class="d-flex justify-content-start flex-column text-dark fw-bolder fs-6">
-              Ana Simmons
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex justify-content-start flex-shrink-0">
-            <a
-              href="#"
-              class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-            >
+      <ng-container *ngFor="let row of data">
+        <tr>
+          <!-- Una iteración para cada columna -->
+          <ng-container *ngFor="let header of headers">
+            <!-- Si la columna no es de tipo 'actions', muestra el dato correspondiente -->
+            <td *ngIf="header.id !== 'actions'">
+              <div class="d-flex align-items-center">
+                <div class="d-flex justify-content-start flex-column text-dark fw-bolder fs-6">
+                  {{ row[header.id] }}
+                </div>
+              </div>
+            </td>
+            <!-- Si la columna es de tipo 'actions', muestra los botones -->
+            <td *ngIf="header.id === 'actions'">
+              <div class="d-flex justify-content-start flex-shrink-0">
+                <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                >
                 <span
-                  [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
-                  class="svg-icon svg-icon-3">
+                        [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
+                        class="svg-icon svg-icon-3">
                 </span>
-            </a>
-            <a
-              href="#"
-              class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-            >
+                </a>
+                <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                >
                 <span
-                  [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
-                  class="svg-icon svg-icon-3">
+                        [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
+                        class="svg-icon svg-icon-3">
                 </span>
-            </a>
-            <a
-              href="#"
-              class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-            >
+                </a>
+                <a
+                        href="#"
+                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
+                >
                 <span
-                  [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
-                  class="svg-icon svg-icon-3">
+                        [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
+                        class="svg-icon svg-icon-3">
                 </span>
-            </a>
-          </div>
-        </td>
-      </tr>
+                </a>
+              </div>
+            </td>
+          </ng-container>
+        </tr>
+      </ng-container>
       </tbody>
-      <tfoot>
-
-<!--      <mat-paginator [length]="100"-->
-<!--                     [pageSize]="10"-->
-<!--                     [pageSizeOptions]="[5, 10, 25, 100]">-->
-<!--      </mat-paginator>-->
-      </tfoot>
       <!-- end::Table body -->
     </table>
   </div>
 
-  <app-paginate>
+  <app-paginate
+    [totalEntries]="totalEntries"
+    [itemsPerPageOptions]="itemsPerPageOptions"
+    (paginationChange)="onPaginationChange($event)">
   </app-paginate>
 
 </div>
