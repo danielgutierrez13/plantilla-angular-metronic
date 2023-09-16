@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { LoginModelResponse } from "../../../../../../../domain/login/interfaces/login-model";
+import { LoginInterfacesResponse } from "../../../../../../../domain/login/interfaces/login-interfaces";
 import { LoginRepositoryService } from "../../../../../../../domain/login/repository/login-repository.service";
 
 @Component({
@@ -11,7 +11,7 @@ export class UserInnerComponent implements OnInit {
   class = `menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg menu-state-primary fw-bold py-4 fs-6 w-275px`;
   @HostBinding('attr.data-kt-menu') dataKtMenu = 'true';
 
-  user$: LoginModelResponse | null;
+  user$: LoginInterfacesResponse | null;
 
   constructor(
     private auth: LoginRepositoryService,

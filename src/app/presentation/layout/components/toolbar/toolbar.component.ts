@@ -24,7 +24,7 @@ export class ToolbarComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.toolbarContainerCssClasses =
-      this.layout.getStringCSSClasses('toolbarContainer');
+    this.layout.getStringCSSClasses('toolbarContainer');
     this.pageTitleCssClasses = this.layout.getStringCSSClasses('pageTitle');
     this.pageTitleAttributes = this.layout.getHTMLAttributes('pageTitle');
   }

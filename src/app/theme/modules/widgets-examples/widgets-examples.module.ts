@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WidgetsExamplesRoutingModule } from './widgets-examples-routing.module';
 import { WidgetsExamplesComponent } from './widgets-examples.component';
@@ -11,6 +11,7 @@ import { FeedsComponent } from './feeds/feeds.component';
 import { WidgetsModule } from '../../_metronic/partials';
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     WidgetsExamplesComponent,
     ListsComponent,

@@ -1,9 +1,9 @@
-export interface LoginModelRequest {
+export interface LoginInterfacesRequest {
   username: string;
   password: string;
 }
 
-export interface LoginModelResponse {
+export interface LoginInterfacesResponse {
   status: boolean;
   username: string;
   dni?: string;
