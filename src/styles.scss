@@ -4,3 +4,11 @@
 // @import "./assets/sass/style.dark";
 
 @import "./assets/sass/style.angular.scss";
+
+.cdk-describedby-message-container,
+.cdk-visually-hidden {
+  display: none !important;  /* El !important asegura que este estilo tiene prioridad */
+}
+app-scroll-top {
+  display: none;
+}

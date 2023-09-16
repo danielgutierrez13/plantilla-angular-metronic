@@ -1,5 +1,7 @@
-<div class="d-flex flex-stack flex-wrap pt-10">
-  <div class="fs-6 fw-bold text-gray-700">
+<div class="d-flex align-items-center pt-10">
+
+  <!-- Contenedor del texto -->
+  <div class="flex-grow-1 fs-6 fw-bold text-gray-700">
     <span class="d-none d-md-inline">Mostrando </span>
     {{ (_currentPage - 1) * _selectedItemsPerPage + 1 }} a
     {{ Math.min(_currentPage * _selectedItemsPerPage, _totalEntries) }}
@@ -7,34 +9,46 @@
     <span class="d-none d-md-inline"> datos</span>
   </div>
 
-  <ul class="pagination">
-    <li class="page-item previous">
-      <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage - 1)">
-        <i class="previous"></i>
-      </a>
-    </li>
-
-    <li class="page-item" [class.active]="_currentPage === page" *ngFor="let page of getPagesToShow()">
-      <a class="page-link cursor-pointer"  (click)="setCurrentPage(page)">
-        {{ page }}
-      </a>
-    </li>
-
-    <li class="page-item next">
-      <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage + 1)">
-        <i class="next"></i>
-      </a>
-    </li>
-  </ul>
-
-  <div class="form-group ml-auto">
-    <div class="fs-6 fw-bold text-gray-700 d-none d-md-inline">
+  <!-- Selector de elementos por página -->
+  <div class="form-group d-none d-md-flex align-items-center mr-3" style="position: relative; width: 150px;">
+    <div class="fs-6 fw-bold text-gray-700 spacing">
       Mostrar:
     </div>
-    <select id="itemsPerPageSelect" [(ngModel)]="_selectedItemsPerPage" (change)="onItemsPerPageChange()" class="d-md-inline">
+    <select id="itemsPerPageSelect" [(ngModel)]="_selectedItemsPerPage" (change)="onItemsPerPageChange()" class="custom-select2">
       <option *ngFor="let option of _itemsPerPageOptions" [value]="option">{{ option }}</option>
     </select>
-    </div>
+    <span class="custom-select2-arrow">
+        <i class="fas fa-chevron-down"></i>
+    </span>
+  </div>
+
+  <!-- Paginación -->
+  <div style="width: 200px;">
+    <ul class="pagination mb-0">
+      <!-- Ir a la primera página -->
+      <li class="page-item" [class.disabled]="_currentPage === 1">
+        <a class="page-link cursor-pointer" (click)="setCurrentPage(1)">
+          <i [style.color]="_currentPage === 1 ? 'gray' : 'black'" class="fas fa-angle-double-left"></i>
+        </a>
+      </li>
+      <!-- Anterior página -->
+      <li class="page-item" [class.disabled]="_currentPage === 1">
+        <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage - 1)">
+          <i [style.color]="_currentPage === 1 ? 'gray' : 'black'" class="fas fa-angle-left"></i>
+        </a>
+      </li>
+      <!-- Siguiente página -->
+      <li class="page-item" [class.disabled]="_currentPage === getTotalPages()">
+        <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage + 1)">
+          <i [style.color]="_currentPage === getTotalPages() ? 'gray' : 'black'" class="fas fa-angle-right"></i>
+        </a>
+      </li>
+      <!-- Ir a la última página -->
+      <li class="page-item" [class.disabled]="_currentPage === getTotalPages()">
+        <a class="page-link cursor-pointer" (click)="setCurrentPage(getTotalPages())">
+          <i [style.color]="_currentPage === getTotalPages() ? 'gray' : 'black'" class="fas fa-angle-double-right"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
-
-

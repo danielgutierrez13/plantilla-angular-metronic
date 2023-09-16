@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output} from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-paginate',
@@ -12,7 +13,7 @@ export class PaginateComponent {
   // @Output() currentPageChange: EventEmitter<number> = new EventEmitter<number>();
   // @Output() selectedItemsPerPageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  @Output() public _totalEntries: number = 2000;
+  @Output() public _totalEntries: number = 100;
   @Output() public _currentPage: number = 1;
   @Output() public _selectedItemsPerPage: number = 10;
   @Output() public _itemsPerPageOptions: number[] = [5, 10, 25, 50];
@@ -53,13 +54,26 @@ export class PaginateComponent {
   }
 
 
-  public setCurrentPage(page: number) {
-    if (page >= 1 && page <= Math.ceil(this._totalEntries / this._selectedItemsPerPage)) {
+  getTotalPages(): number {
+    return Math.ceil(this._totalEntries / this._selectedItemsPerPage);
+  }
+
+  setCurrentPage(page: number): void {
+    // Verifica que la página esté en un rango válido
+    if (page >= 1 && page <= this.getTotalPages()) {
       this._currentPage = page;
+      // Actualiza tus datos basándote en los valores actuales de paginado
+      // ...
     }
   }
 
-  public onItemsPerPageChange() {
+  handlePageEvent(event: PageEvent) {
+    this._currentPage = event.pageIndex + 1;
+    this._selectedItemsPerPage = event.pageSize;
+  }
+
+  onItemsPerPageChange() {
     this._currentPage = 1;
   }
+
 }
