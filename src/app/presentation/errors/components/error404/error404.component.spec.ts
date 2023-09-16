@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { Error404Component } from './error404.component';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('Error404Component', () => {
   let component: Error404Component;
@@ -8,7 +9,8 @@ describe('Error404Component', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ Error404Component ]
+      declarations: [ Error404Component ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });

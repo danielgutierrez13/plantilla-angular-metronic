@@ -13,7 +13,7 @@
           data-bs-trigger="hover"
           title="Click to add a user"
         >
-          <a
+          <button
             class="btn btn-sm btn-light-primary"
             (click)="console.log('click')"
           >
@@ -22,12 +22,16 @@
               class="svg-icon svg-icon-3">
             </span>
             Nuevo
-          </a>
+          </button>
         </div>
       </div>
     <app-table
+            [headers]="yourHeadersData"
+            [data]="yourDataRows"
+            [totalEntries]="yourTotalEntriesValue"
+            (interaction)="onTableInteraction($event)"
+            (menuChange)="onMenuChange($event)"
+    ></app-table>
 
-    >
-    </app-table>
   </div>
 </div>

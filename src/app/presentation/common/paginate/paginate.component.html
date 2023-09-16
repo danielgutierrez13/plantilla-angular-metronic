@@ -3,8 +3,8 @@
   <!-- Contenedor del texto -->
   <div class="flex-grow-1 fs-6 fw-bold text-gray-700">
     <span class="d-none d-md-inline">Mostrando </span>
-    {{ (_currentPage - 1) * _selectedItemsPerPage + 1 }} a
-    {{ Math.min(_currentPage * _selectedItemsPerPage, totalEntries) }}
+    {{ (currentPage - 1) * selectedItemsPerPage + 1 }} a
+    {{ Math.min(currentPage * selectedItemsPerPage, totalEntries) }}
     <span class="d-none d-md-inline"> de </span> {{ totalEntries }}
     <span class="d-none d-md-inline"> datos</span>
   </div>
@@ -14,7 +14,7 @@
     <div class="fs-6 fw-bold text-gray-700 spacing">
       Mostrar:
     </div>
-    <select id="itemsPerPageSelect" [(ngModel)]="_selectedItemsPerPage" (change)="onItemsPerPageChange()" class="custom-select2">
+    <select id="itemsPerPageSelect" [(ngModel)]="selectedItemsPerPage" (change)="onItemsPerPageChange()" class="custom-select2">
       <option *ngFor="let option of itemsPerPageOptions" [value]="option">{{ option }}</option>
     </select>
     <span class="custom-select2-arrow">
@@ -26,27 +26,27 @@
   <div style="width: 200px;">
     <ul class="pagination mb-0">
       <!-- Ir a la primera página -->
-      <li class="page-item" [class.disabled]="_currentPage === 1">
+      <li class="page-item" [class.disabled]="currentPage <= 1">
         <a class="page-link cursor-pointer" (click)="setCurrentPage(1)">
-          <i [style.color]="_currentPage === 1 ? 'gray' : 'black'" class="fas fa-angle-double-left"></i>
+          <i [style.color]="currentPage <= 1 ? 'gray' : 'black'" class="fas fa-angle-double-left"></i>
         </a>
       </li>
       <!-- Anterior página -->
-      <li class="page-item" [class.disabled]="_currentPage === 1">
-        <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage - 1)">
-          <i [style.color]="_currentPage === 1 ? 'gray' : 'black'" class="fas fa-angle-left"></i>
+      <li class="page-item" [class.disabled]="currentPage <= 1">
+        <a class="page-link cursor-pointer" (click)="setCurrentPage(currentPage - 1)">
+          <i [style.color]="currentPage <= 1 ? 'gray' : 'black'" class="fas fa-angle-left"></i>
         </a>
       </li>
       <!-- Siguiente página -->
-      <li class="page-item" [class.disabled]="_currentPage === getTotalPages()">
-        <a class="page-link cursor-pointer" (click)="setCurrentPage(_currentPage + 1)">
-          <i [style.color]="_currentPage === getTotalPages() ? 'gray' : 'black'" class="fas fa-angle-right"></i>
+      <li class="page-item" [class.disabled]="currentPage >= getTotalPages()">
+        <a class="page-link cursor-pointer" (click)="setCurrentPage(currentPage + 1)">
+          <i [style.color]="currentPage >= getTotalPages() ? 'gray' : 'black'" class="fas fa-angle-right"></i>
         </a>
       </li>
       <!-- Ir a la última página -->
-      <li class="page-item" [class.disabled]="_currentPage === getTotalPages()">
+      <li class="page-item" [class.disabled]="currentPage >= getTotalPages()">
         <a class="page-link cursor-pointer" (click)="setCurrentPage(getTotalPages())">
-          <i [style.color]="_currentPage === getTotalPages() ? 'gray' : 'black'" class="fas fa-angle-double-right"></i>
+          <i [style.color]="currentPage >= getTotalPages() ? 'gray' : 'black'" class="fas fa-angle-double-right"></i>
         </a>
       </li>
     </ul>
