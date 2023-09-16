@@ -8,12 +8,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoadingComponent } from './presentation/common/loading/loading.component';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { DashboardComponent } from './presentation/pages/dashboard/dashboard.component';
 import { WidgetsModule } from "./theme/_metronic/partials";
 import { PaginateComponent } from "./presentation/common/paginate/paginate.component";
 import { TableComponent } from "./presentation/common/table/table.component";
 import { UsuariosComponent } from './presentation/security/usuarios/usuarios.component';
+import { MatSortModule } from "@angular/material/sort";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 @NgModule({
     declarations: [
@@ -35,6 +37,8 @@ import { UsuariosComponent } from './presentation/security/usuarios/usuarios.com
         ReactiveFormsModule,
         WidgetsModule,
         FormsModule,
+        MatSortModule,
+        MatPaginatorModule
     ],
     providers: [],
     bootstrap: [AppComponent],

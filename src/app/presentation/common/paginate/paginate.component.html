@@ -29,7 +29,7 @@
 
   <div class="form-group ml-auto">
     <div class="fs-6 fw-bold text-gray-700 d-none d-md-inline">
-      Ítems por página:
+      Mostrar:
     </div>
     <select id="itemsPerPageSelect" [(ngModel)]="_selectedItemsPerPage" (change)="onItemsPerPageChange()" class="d-md-inline">
       <option *ngFor="let option of _itemsPerPageOptions" [value]="option">{{ option }}</option>

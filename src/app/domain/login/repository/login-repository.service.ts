@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ApiService } from "../../api.service";
 import { environment } from "../../../../environments/environment";
 import { BehaviorSubject, Observable } from "rxjs";
-import { LoginModelRequest, LoginModelResponse } from "../interfaces/login-model";
+import { LoginInterfacesRequest, LoginInterfacesResponse } from "../interfaces/login-interfaces";
 import { LoginConstRoutes } from "../const/login-const";
 import { map } from "rxjs/operators";
 
@@ -11,8 +11,8 @@ import { map } from "rxjs/operators";
 })
 export class LoginRepositoryService {
 
-  private currentUserSubject: BehaviorSubject<LoginModelResponse | null>;
-  public currentUser: Observable<LoginModelResponse | null>;
+  private currentUserSubject: BehaviorSubject<LoginInterfacesResponse | null>;
+  public currentUser: Observable<LoginInterfacesResponse | null>;
   public isLogin: boolean = false;
   public roleAs: string;
 
@@ -20,14 +20,14 @@ export class LoginRepositoryService {
     private apiService: ApiService
   ) {
     const parsedUser = JSON.parse(localStorage.getItem('currentUser')?.toString() ?? '{}');
-    this.currentUserSubject = new BehaviorSubject<LoginModelResponse | null>(parsedUser);
+    this.currentUserSubject = new BehaviorSubject<LoginInterfacesResponse | null>(parsedUser);
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public login(data: LoginModelRequest): Observable<LoginModelResponse> {
+  public login(data: LoginInterfacesRequest): Observable<LoginInterfacesResponse> {
     const ctrl: string = LoginConstRoutes.LOGIN;
     return this.apiService.post(ctrl, environment.apiSecurity, data).pipe(
-      map((repsonse: LoginModelResponse) => {
+      map((repsonse: LoginInterfacesResponse) => {
         localStorage.setItem("currentUser", JSON.stringify(repsonse));
         localStorage.setItem("state", JSON.stringify(repsonse.status));
         localStorage.setItem("token", JSON.stringify(repsonse.token));
@@ -38,7 +38,7 @@ export class LoginRepositoryService {
     );
   }
 
-  public get currentUserValue(): LoginModelResponse | null {
+  public get currentUserValue(): LoginInterfacesResponse | null {
     return this.currentUserSubject.value;
   }
 

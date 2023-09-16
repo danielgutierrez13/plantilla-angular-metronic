@@ -40,6 +40,8 @@
   <div
     class="d-flex align-items-stretch justify-content-between flex-lg-grow-1"
   >
+    <!-- begin::Navbar -->
+
     <ng-container *ngIf="headerLeft === 'menu'">
       <div class="d-flex align-items-stretch" id="kt_header_nav">
         <div
@@ -55,20 +57,16 @@
           data-kt-swapper-mode="prepend"
           data-kt-swapper-parent="{default: '#kt_body', lg: '#kt_header_nav'}"
         >
+          <app-page-title
+            #ktPageTitle
+            class="page-title d-flex"
+            [ngClass]="pageTitleCssClasses"
+          ></app-page-title>
         </div>
       </div>
     </ng-container>
-    <!-- begin::Navbar -->
 
-    <ng-container *ngIf="headerLeft === 'page-title'">
-      <div class="d-flex align-items-center" id="kt_header_nav">
-        <app-page-title
-          #ktPageTitle
-          class="page-title d-flex"
-          [ngClass]="pageTitleCssClasses"
-        ></app-page-title>
-      </div>
-    </ng-container>
+
 
     <div class="d-flex align-items-stretch flex-shrink-0">
       <app-topbar class="d-flex align-items-stretch flex-shrink-0"></app-topbar>

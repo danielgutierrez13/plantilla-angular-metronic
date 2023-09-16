@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { LoginRepositoryService } from "../../../../domain/login/repository/login-repository.service";
-import { LoginModelRequest } from "../../../../domain/login/interfaces/login-model";
+import { LoginInterfacesRequest } from "../../../../domain/login/interfaces/login-interfaces";
 import { ChangeDetectorRef } from '@angular/core';
 import { finalize } from "rxjs/operators";
 import { Router } from "@angular/router";
@@ -62,7 +62,7 @@ export class LoginComponent  implements OnInit {
       this.hasError = false;
       this.isLoading = true;
       const values = this.loginForm.value;
-      const data: LoginModelRequest = {
+      const data: LoginInterfacesRequest = {
         username: values.email,
         password: values.password
       };

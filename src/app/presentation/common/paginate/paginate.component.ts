@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Output} from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-paginate',
@@ -11,33 +12,46 @@ export class PaginateComponent {
   // @Output() currentPageChange: EventEmitter<number> = new EventEmitter<number>();
   // @Output() selectedItemsPerPageChange: EventEmitter<number> = new EventEmitter<number>();
 
-  @Output() public _totalEntries: number = 91;
+  @Output() public _totalEntries: number = 2000;
   @Output() public _currentPage: number = 1;
   @Output() public _selectedItemsPerPage: number = 10;
   @Output() public _itemsPerPageOptions: number[] = [5, 10, 25, 50];
   protected readonly Math = Math;
+  public maxPagesToShow: number = 5;
+
+  constructor(private breakpointObserver: BreakpointObserver) {
+    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.XSmall]).subscribe(result => {
+      if (result.matches) {
+        this.maxPagesToShow = 3;
+      } else {
+        this.maxPagesToShow = 5;
+      }
+    });
+  }
 
   public getPagesToShow(): number[] {
     const totalPages: number = Math.ceil(this._totalEntries / this._selectedItemsPerPage);
-    const maxPagesToShow: number = 5;
 
     let startPage: number = 1;
     let endPage: number = totalPages;
 
-    if (totalPages > maxPagesToShow) {
-      const halfMax: number = Math.floor(maxPagesToShow / 2);
-      if (this._currentPage <= halfMax) {
-        endPage = maxPagesToShow;
+    if (totalPages > this.maxPagesToShow) {
+      const halfMax: number = Math.floor(this.maxPagesToShow / 2) + this.maxPagesToShow - 2;
+
+      if (this._currentPage <= halfMax ) {
+        endPage = this.maxPagesToShow;
       } else if (this._currentPage >= totalPages - halfMax) {
-        startPage = totalPages - maxPagesToShow + 1;
+        startPage = totalPages - this.maxPagesToShow + 1;
+        endPage = totalPages;
       } else {
-        startPage = this._currentPage - halfMax;
-        endPage = this._currentPage + halfMax;
+        startPage = this._currentPage - this.maxPagesToShow + 1;
+        endPage = this._currentPage;
       }
     }
 
     return Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i);
   }
+
 
   public setCurrentPage(page: number) {
     if (page >= 1 && page <= Math.ceil(this._totalEntries / this._selectedItemsPerPage)) {

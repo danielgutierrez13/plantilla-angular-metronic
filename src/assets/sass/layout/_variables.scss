@@ -72,6 +72,6 @@ $aside-config: (
 ) !default;
 
 // Footer
-$footer-config: (	
+$footer-config: (
 	bg-color: if(isDarkMode(), #1B1B28, $white),
 ) !default;

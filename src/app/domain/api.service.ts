@@ -95,6 +95,4 @@ export class ApiService {
     }
     return headers;
   }
-
-
 }

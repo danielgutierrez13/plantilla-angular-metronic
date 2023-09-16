@@ -39,7 +39,7 @@ const asideMenu: MenuAside[] = [
     title: 'Cuentas',
     url: '/crafted/account',
     icon: './assets/media/icons/duotune/communication/com006.svg',
-    separator: false,
+    separator: true,
     nameSeparator: 'Cuentas',
     order: 2,
     subMenu: [
@@ -57,7 +57,7 @@ const asideMenu: MenuAside[] = [
   },
   {
     title: 'Seguridad',
-    url: '/security',
+    url: '/security/usuarios',
     icon: './assets/media/icons/duotune/communication/com006.svg',
     separator: false,
     nameSeparator: 'Seguridad',
