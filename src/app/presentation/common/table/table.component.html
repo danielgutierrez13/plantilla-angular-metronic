@@ -17,53 +17,59 @@
       <!-- end::Table head -->
       <!-- begin::Table body -->
       <tbody>
-      <ng-container *ngFor="let row of data">
-        <tr>
-          <!-- Una iteración para cada columna -->
-          <ng-container *ngFor="let header of headers">
-            <!-- Si la columna no es de tipo 'actions', muestra el dato correspondiente -->
-            <td *ngIf="header.id !== 'actions'">
-              <div class="d-flex align-items-center">
-                <div class="d-flex justify-content-start flex-column text-dark fw-bolder fs-6">
-                  {{ row[header.id] }}
+      <ng-container *ngIf="data.length; else noData">
+        <ng-container *ngFor="let row of data">
+          <tr>
+            <!-- Una iteración para cada columna -->
+            <ng-container *ngFor="let header of headers">
+              <!-- Si la columna no es de tipo 'actions', muestra el dato correspondiente -->
+              <td *ngIf="header.id !== 'actions' && header.id !== 'status'">
+                <div class="d-flex align-items-center">
+                  <div class="d-flex justify-content-start flex-column text-dark fw-bolder fs-6">
+                    {{ row[header.id] }}
+                  </div>
                 </div>
-              </div>
-            </td>
-            <!-- Si la columna es de tipo 'actions', muestra los botones -->
-            <td *ngIf="header.id === 'actions'">
-              <div class="d-flex justify-content-start flex-shrink-0">
-                <a
-                        href="#"
-                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                >
-                <span
-                        [inlineSVG]="'./assets/media/icons/duotune/general/gen019.svg'"
-                        class="svg-icon svg-icon-3">
-                </span>
-                </a>
-                <a
-                        href="#"
-                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
-                >
-                <span
-                        [inlineSVG]="'./assets/media/icons/duotune/art/art005.svg'"
-                        class="svg-icon svg-icon-3">
-                </span>
-                </a>
-                <a
-                        href="#"
-                        class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm"
-                >
-                <span
-                        [inlineSVG]="'./assets/media/icons/duotune/general/gen027.svg'"
-                        class="svg-icon svg-icon-3">
-                </span>
-                </a>
-              </div>
-            </td>
-          </ng-container>
-        </tr>
+              </td>
+
+              <!-- Si la columna es de tipo 'actions', muestra los botones -->
+              <td *ngIf="header.id === 'actions'">
+                <div class="d-flex justify-content-start flex-shrink-0">
+                  <ng-container *ngFor="let menuItem of menuItems">
+                    <button
+                            class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm me-1"
+                            (click)="changeMenuItems(row, menuItem)"
+                            *ngIf="(menuItem.id !== 5 && menuItem.id !== 6) ||
+                                   (row.status === 0 && menuItem.id === 5) ||
+                                   (row.status === 1 && menuItem.id === 6)">
+                      <i class="fa {{ menuItem.icon }} mr-2 icon-large" aria-hidden="true"></i>
+                    </button>
+                  </ng-container>
+                </div>
+              </td>
+
+              <td *ngIf="header.id === 'status'">
+                <div class="container-estado text-dark fw-bolder">
+                  <span class="responsive-text">{{ getTextEstado(row[header.id]) }}</span>
+                  <span class="circle" [style.background-color]="getCircleColorEstado(row[header.id])"></span>
+                </div>
+              </td>
+            </ng-container>
+          </tr>
+        </ng-container>
       </ng-container>
+
+      <ng-template #noData>
+        <tr>
+          <td [colSpan]="headers.length" class="text-center">
+            <div class="d-flex align-items-center">
+              <div class="d-flex justify-content-start flex-column text-dark fw-bolder fs-6">
+                No hay datos
+              </div>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
       </tbody>
       <!-- end::Table body -->
     </table>
@@ -72,7 +78,10 @@
   <app-paginate
     [totalEntries]="totalEntries"
     [itemsPerPageOptions]="itemsPerPageOptions"
-    (paginationChange)="onPaginationChange($event)">
+    (paginationChange)="onPaginationChange($event)"
+    [currentPage]="paginationData.currentPage"
+    [selectedItemsPerPage]="paginationData.itemsPerPage"
+  >
   </app-paginate>
 
 </div>

@@ -4,11 +4,8 @@ export interface HeaderTable {
   minWidth?: string;
 }
 
-export interface MenuItems {
+export interface MenuItem {
   id: number;
-  options: string;
-}
-
-export interface DataRow {
-  [key: string]: string;
+  icon: string;
+  label: string;
 }

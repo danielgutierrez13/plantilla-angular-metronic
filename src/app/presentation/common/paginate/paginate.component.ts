@@ -10,38 +10,34 @@ export class PaginateComponent {
 
   @Input() totalEntries: number = 100;
   @Input() itemsPerPageOptions: number[] = [5, 10, 25, 50];
+  @Input() currentPage: number = 1;
+  @Input() selectedItemsPerPage: number = 10;
   @Output() paginationChange: EventEmitter<PaginationData> = new EventEmitter<PaginationData>();
-
-
-  public _currentPage: number = 1;
-  public _selectedItemsPerPage: number = 10;
 
   protected readonly Math = Math;
 
   constructor() { }
 
   getTotalPages(): number {
-    return Math.ceil(this.totalEntries / this._selectedItemsPerPage);
+    return Math.ceil(this.totalEntries / this.selectedItemsPerPage);
   }
 
   setCurrentPage(page: number): void {
     if (page >= 1 && page <= this.getTotalPages()) {
-      this._currentPage = page;
+      this.currentPage = page;
       this.emitPaginationData();
     }
   }
 
   onItemsPerPageChange() {
-    this._currentPage = 1;
+    this.currentPage = 1;
     this.emitPaginationData();
   }
 
   private emitPaginationData() {
     this.paginationChange.emit({
-        currentPage: this._currentPage,
-        itemsPerPage: this._selectedItemsPerPage
+        currentPage: this.currentPage,
+        itemsPerPage: this.selectedItemsPerPage
     });
   }
-
-
 }

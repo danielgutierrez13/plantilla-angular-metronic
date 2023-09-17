@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
@@ -15,6 +15,9 @@ import { PaginateComponent } from "./presentation/common/paginate/paginate.compo
 import { TableComponent } from "./presentation/common/table/table.component";
 import { UsuariosComponent } from './presentation/security/usuarios/usuarios.component';
 import { MatSortModule } from "@angular/material/sort";
+import { MatButtonModule } from "@angular/material/button";
+import { MatMenuModule } from "@angular/material/menu";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
     declarations: [
@@ -37,6 +40,9 @@ import { MatSortModule } from "@angular/material/sort";
         WidgetsModule,
         FormsModule,
         MatSortModule,
+        MatButtonModule,
+        MatMenuModule,
+        MatIconModule
     ],
     providers: [],
     bootstrap: [AppComponent],
@@ -45,6 +51,9 @@ import { MatSortModule } from "@angular/material/sort";
         PaginateComponent,
         TableComponent,
         DashboardComponent
-    ]
+    ],
+    schemas: [
+        CUSTOM_ELEMENTS_SCHEMA
+    ],
 })
 export class AppModule {}

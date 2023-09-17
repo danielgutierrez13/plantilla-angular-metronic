@@ -1,0 +1,25 @@
+.container-estado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100px;
+}
+
+.circle {
+  margin-right: 15px; /* Aumenta este valor según tus necesidades */
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.responsive-text {
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .responsive-text {
+    display: none;
+  }
+}
